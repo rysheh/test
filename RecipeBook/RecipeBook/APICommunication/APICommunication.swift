@@ -39,6 +39,42 @@ class APICommunication {
         }
     }
     
+    //returns recipeid upon completion
+    func createRecipe(completion: @escaping (String?, Error?) ->()) {
+        // create post request
+        let url = URL(string: APICommunication.baseURL + "/recipe")!
+        var request = URLRequest(url: url)
+        request.addValue("application/json", forHTTPHeaderField: "Content-type")
+        request.httpMethod = "POST"
+        
+        let jsonRequest: [String: String] = [
+            "name": "test",//newRecipe.name,
+            "description": "test"//newRecipe.description
+            
+        ]
+        let jsonData = try? JSONSerialization.data(withJSONObject: jsonRequest)
+        request.httpBody = jsonData
+        
+        //take json of user, parse for userObject, return user upon completion
+        sendRequest(with: request) {(json, error) in
+            guard let json = json, error == nil else {
+                print("ERROR: \(String(describing: error))")
+                completion(nil, error)
+                return
+            }
+            
+            guard let recipeObjects = json as? [String: Any] else {
+                print("ERROR: \(String(describing: error))")
+                completion(nil, error)
+                return
+            }
+            
+            var recipeID = json["id"]
+            
+            completion(recipeID as? String, nil)
+        }
+    }
+    
     func createUser(email: String, completion: @escaping (String?, Error?) ->()) { //returns userid upon completion
         // create post request
         let url = URL(string: APICommunication.baseURL + "/user")!
