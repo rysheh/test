@@ -6,9 +6,10 @@
 //  Copyright © 2018 Ryan Sheh. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
-struct Instruction {
+class Instruction: NSObject {
     let image: UIImage?
     let title: String
     let info: String
@@ -22,5 +23,7 @@ struct Instruction {
         self.ingredients = ingredients
         self.time = time
     }
+    
+    
 }
 

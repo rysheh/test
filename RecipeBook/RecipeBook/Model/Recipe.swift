@@ -7,25 +7,28 @@
 //
 
 import UIKit
+import CoreData
 
-class Recipe {
+@objc (Recipe)
+class Recipe: NSManagedObject {
    
-    var name: String = ""
-    var description: String = ""
-    var user: String = ""
-    var image: UIImage? = nil
+    @NSManaged var name: String
+    @NSManaged var details: String
+    @NSManaged var user: String
+    var image: UIImage?
 //    let ratings: [Int] = []
-    var instructions: [Instruction] = []
+    @NSManaged var instructions: [Instruction]
     
-    convenience init(name: String, description: String, user: String, image: UIImage, instructions: [Instruction]) {
+    convenience init(name: String, details: String, user: String, image: UIImage, instructions: [Instruction]) {
         self.init()
         self.name = name
-        self.description = description
+        self.details = details
         self.user = user
         self.image = image
         self.instructions = instructions
     }
     
+    //parse Recipes in JSON
     static func recipeObject(fromJSON json: [String: Any]) -> Recipe {
         
         let recipe = Recipe()
@@ -34,8 +37,8 @@ class Recipe {
             recipe.name = name
         }
         
-        if let description = json["description"] as? String {
-            recipe.description = description
+        if let details = json["details"] as? String {
+            recipe.details = details
         }
         
         if let user = json["user"] as? String {
