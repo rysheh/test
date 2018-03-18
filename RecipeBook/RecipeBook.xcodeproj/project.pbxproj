@@ -124,9 +124,8 @@
 			children = (
 				8251DFF3201523DD0008F7C6 /* AppDelegate.swift */,
 				82D79A9D2049E774007313B4 /* APICommunication */,
-				82EBBADB2015A01A00D0787E /* Model */,
-				82EBBAD920159FF200D0787E /* View */,
-				82EBBADA20159FFB00D0787E /* Controller */,
+				82CFB8EB205C889D008C8B1C /* Account */,
+				82CFB8ED205C8F2B008C8B1C /* Recipes */,
 				8251DFFD201523DD0008F7C6 /* Assets.xcassets */,
 				8251DFFF201523DD0008F7C6 /* LaunchScreen.storyboard */,
 				8251E002201523DD0008F7C6 /* Info.plist */,
@@ -135,6 +134,29 @@
 				821414A5203AB7B3006EB96B /* ADAM.CG PRO.otf */,
 			);
 			path = RecipeBook;
+			sourceTree = "<group>";
+		};
+		82CFB8EB205C889D008C8B1C /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				82AA989A203E03EC00A5E3A5 /* User.swift */,
+				82AA989E203E0B8700A5E3A5 /* AccountsListView.storyboard */,
+				82E8D334204367E4003B9ACD /* AccountsDetail.storyboard */,
+				82AA989C203E0B2100A5E3A5 /* AccountsListViewController.swift */,
+				82415F9E2044B96B00BC657F /* RegisterViewController.swift */,
+				82415FA12044D77600BC657F /* SignInViewController.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		82CFB8ED205C8F2B008C8B1C /* Recipes */ = {
+			isa = PBXGroup;
+			children = (
+				82EBBADB2015A01A00D0787E /* Model */,
+				82EBBAD920159FF200D0787E /* View */,
+				82EBBADA20159FFB00D0787E /* Controller */,
+			);
+			path = Recipes;
 			sourceTree = "<group>";
 		};
 		82D79A9D2049E774007313B4 /* APICommunication */ = {
@@ -154,8 +176,6 @@
 				828D10C42015BB9E00ED776C /* RecipeDetailView.storyboard */,
 				827125162050985200F93FAB /* AddRecipeView.storyboard */,
 				82FC29E5202FDAC50081BE4D /* InstructionsView.storyboard */,
-				82AA989E203E0B8700A5E3A5 /* AccountsListView.storyboard */,
-				82E8D334204367E4003B9ACD /* AccountsDetail.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -169,10 +189,7 @@
 				8251E009201525A00008F7C6 /* RecipeDetailViewController.swift */,
 				82FC29E7202FDAE30081BE4D /* InstructionsViewController.swift */,
 				827125222057326200F93FAB /* AddRecipeViewController.swift */,
-				82AA989C203E0B2100A5E3A5 /* AccountsListViewController.swift */,
 				82AA98A1203E153C00A5E3A5 /* FinishViewController.swift */,
-				82415F9E2044B96B00BC657F /* RegisterViewController.swift */,
-				82415FA12044D77600BC657F /* SignInViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -184,7 +201,6 @@
 				82EBBADE2015A5F200D0787E /* Instruction.swift */,
 				821387DD2033FBD70004CA0B /* Ingredient.swift */,
 				821387DF2034051D0004CA0B /* Measurement.swift */,
-				82AA989A203E03EC00A5E3A5 /* User.swift */,
 				826D1147204A26E300F47344 /* Ratings.swift */,
 			);
 			path = Model;
