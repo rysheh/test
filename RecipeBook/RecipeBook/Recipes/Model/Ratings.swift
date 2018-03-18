@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-fileprivate class Ratings {
+class Ratings {
     @IBOutlet weak var firstStar: UIImageView!
     @IBOutlet weak var secondStar: UIImageView!
     @IBOutlet weak var thirdStar: UIImageView!

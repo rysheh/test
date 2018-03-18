@@ -101,6 +101,33 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		821C09FC205E0BDA0070F56F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				82AA989C203E0B2100A5E3A5 /* AccountsListViewController.swift */,
+				82415F9E2044B96B00BC657F /* RegisterViewController.swift */,
+				82415FA12044D77600BC657F /* SignInViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		821C09FD205E0BE30070F56F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82AA989E203E0B8700A5E3A5 /* AccountsListView.storyboard */,
+				82E8D334204367E4003B9ACD /* AccountsDetail.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		821C09FE205E0BEB0070F56F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82AA989A203E03EC00A5E3A5 /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		8251DFE7201523DD0008F7C6 = {
 			isa = PBXGroup;
 			children = (
@@ -139,12 +166,9 @@
 		82CFB8EB205C889D008C8B1C /* Account */ = {
 			isa = PBXGroup;
 			children = (
-				82AA989A203E03EC00A5E3A5 /* User.swift */,
-				82AA989E203E0B8700A5E3A5 /* AccountsListView.storyboard */,
-				82E8D334204367E4003B9ACD /* AccountsDetail.storyboard */,
-				82AA989C203E0B2100A5E3A5 /* AccountsListViewController.swift */,
-				82415F9E2044B96B00BC657F /* RegisterViewController.swift */,
-				82415FA12044D77600BC657F /* SignInViewController.swift */,
+				821C09FE205E0BEB0070F56F /* Model */,
+				821C09FD205E0BE30070F56F /* View */,
+				821C09FC205E0BDA0070F56F /* Controller */,
 			);
 			path = Account;
 			sourceTree = "<group>";

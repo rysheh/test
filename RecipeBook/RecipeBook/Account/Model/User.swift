@@ -15,7 +15,7 @@ class User: NSManagedObject {
     //    @NSManaged var username: String
     @NSManaged var email: String
     //    @NSManaged var firstName: String
-    //    @NSManaged var lastName: String
+    //    @NSManaged var lastName: String  
     @NSManaged var id: String
     
     convenience init(signedIn: Bool, email: String, id: String) {
