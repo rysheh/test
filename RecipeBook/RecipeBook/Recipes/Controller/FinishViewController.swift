@@ -13,19 +13,15 @@ class FinishViewController: UIViewController {
     
     @IBOutlet weak var ratingView: CosmosView!
     @IBOutlet weak var commentsTextfield: UITextField!
-    var ratings: Ratings = Ratings()
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     func configureUI() {
-        ratingView.settings.fillMode = .half
-        ratingView.settings.updateOnTouch = true
     }
     
     @IBAction func doneButtonTapped(_ sender: Any) {
-//        ratingsSlider.value
     
     }
 }

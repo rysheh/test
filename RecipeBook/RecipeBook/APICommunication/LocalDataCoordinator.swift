@@ -11,13 +11,10 @@ import UIKit
 import CoreData
 
 class LocalDataCoordinator {
+    let container = NSPersistentContainer(name: "RecipeBook")
+    
     func isUserSignedIn() -> Bool {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return false
-        }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
+        let managedContext = container.viewContext
         let fetchRequest = NSFetchRequest<User>(entityName: "User")
         
         do {
@@ -33,11 +30,7 @@ class LocalDataCoordinator {
     }
     
     func signInUser(email: String, userID: String) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
+        let managedContext = container.viewContext
         let description = NSEntityDescription.entity(forEntityName: "\(User.self)", in: managedContext)
         
         //cache user
@@ -49,11 +42,7 @@ class LocalDataCoordinator {
     
     func getUser() -> String? {
         let fetchRequest = NSFetchRequest<User>(entityName: "User")
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return "nil"
-        }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
+        let managedContext = container.viewContext
         
         do {
             let fetchedResults = try managedContext.fetch(fetchRequest)
@@ -68,14 +57,8 @@ class LocalDataCoordinator {
     }
     
     func logoutUser() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
+        let managedContext = container.viewContext
         let description = NSEntityDescription.entity(forEntityName: "\(User.self)", in: managedContext)
-        
         let userMO = User(entity: description!, insertInto: managedContext)
         
         userMO.signedIn = false

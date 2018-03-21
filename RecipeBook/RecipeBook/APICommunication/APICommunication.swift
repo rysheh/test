@@ -95,17 +95,16 @@ class APICommunication {
                 completion(nil, error)
                 return
             }
-            
-            guard let userObjects = json as? [String: Any] else {
+            //guard let userObjects = json as? [String: Any] else {
+            guard json != nil else {
                 print("ERROR: \(String(describing: error))")
                 completion(nil, error)
                 return
             }
     
             //YOU HAVE JSON FOR USER, PARSE OBJECTS AND PUSH IT TO CORE
-            
 //            userID = User.userObject(fromJSON: userObjects)
-            var userID = json["id"]
+            let userID = json["id"]
             
             completion(userID as? String, nil)
         }

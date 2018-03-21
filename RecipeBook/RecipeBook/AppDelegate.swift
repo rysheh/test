@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
         let myDatabase = Firebase.Database.database().reference()
-        myDatabase.setValue("We've got data!")
+        myDatabase.setValue("We've got data")
         
         return true
     }

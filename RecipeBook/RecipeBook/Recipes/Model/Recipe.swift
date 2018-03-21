@@ -11,15 +11,17 @@ import UIKit
 class Recipe {
    
     var name: String = ""
+    var id: String = ""
     var description: String = ""
     var user: String = ""
     var image: UIImage? = nil
 //    let ratings: [Int] = []
     var instructions: [Instruction] = []
     
-    convenience init(name: String, description: String, user: String, image: UIImage, instructions: [Instruction]) {
+    convenience init(name: String, id: String, description: String, user: String, image: UIImage, instructions: [Instruction]) {
         self.init()
         self.name = name
+        self.id = id
         self.description = description
         self.user = user
         self.image = image
@@ -32,6 +34,10 @@ class Recipe {
         
         if let name = json["name"] as? String {
             recipe.name = name
+        }
+        
+        if let id = json["id"] as? String {
+            recipe.id = id
         }
         
         if let description = json["description"] as? String {
@@ -58,7 +64,7 @@ class Recipe {
                 var instructionIngredients = ""
                 var instructionTime: Int = 0
                 var instructionInfo = ""
-                    
+                
                 if let title = instructionObject["title"] as? String {
                     instructionTitle = title
                 }
