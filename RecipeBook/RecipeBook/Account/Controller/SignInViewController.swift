@@ -18,16 +18,18 @@ class SignInViewController: UIViewController {
     }
     
     @IBAction func logInTapped(_ sender: Any) {
-        Auth.auth().signIn(withEmail: emailTextfield.text!, password: passwordTextfield.text!) { (user, error) in
-            if error != nil {
-                print(error!)
-            } else {
-                print("sign in!")
-                self.performSegue(withIdentifier: "unwindToMainSegue", sender: self)
+        if let email = emailTextfield.text, let password = passwordTextfield.text {
+            Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+                if error != nil {
+                    print(error!)
+                } else {
+                    print("sign in!")
+                    self.performSegue(withIdentifier: "unwindToMainSegue", sender: self)
+                }
             }
+            
+            let dc = LocalDataCoordinator()
+            dc.signInUser(email: email, userID: "")
         }
-        
-        let dc = LocalDataCoordinator()
-        dc.signInUser(email: emailTextfield.text!, userID: "")
     }
 }

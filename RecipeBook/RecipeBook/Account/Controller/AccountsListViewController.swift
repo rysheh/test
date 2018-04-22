@@ -34,7 +34,9 @@ class AccountsListViewController: UIViewController {
             self.tableView.reloadData()
         }
         
-        titleLabel.text = localCoordinator.getUser()!
+        if localCoordinator.getUser() != nil {
+            titleLabel.text = localCoordinator.getUser()!
+        }
     }
     
     func logout() {

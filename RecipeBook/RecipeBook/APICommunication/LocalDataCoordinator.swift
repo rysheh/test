@@ -11,16 +11,16 @@ import UIKit
 import CoreData
 
 class LocalDataCoordinator {
-    let container = NSPersistentContainer(name: "RecipeBook")
+    let managedContext = NSPersistentContainer(name: "RecipeBook").viewContext
+    let userFetchRequest = NSFetchRequest<User>(entityName: "User")
     
     func isUserSignedIn() -> Bool {
-        let managedContext = container.viewContext
-        let fetchRequest = NSFetchRequest<User>(entityName: "User")
-        
         do {
-            let fetchedResults = try managedContext.fetch(fetchRequest)
+            let fetchedResults = try managedContext.fetch(userFetchRequest)
             for item in fetchedResults {
-                return (item.value(forKey: "signedIn") as? Bool)!
+                if let signedIn: Bool = item.value(forKey: "signedIn") as? Bool {
+                    return signedIn
+                }
             }
         } catch let error as NSError {
             // something went wrong, print the error.
@@ -30,22 +30,21 @@ class LocalDataCoordinator {
     }
     
     func signInUser(email: String, userID: String) {
-        let managedContext = container.viewContext
-        let description = NSEntityDescription.entity(forEntityName: "\(User.self)", in: managedContext)
-        
-        //cache user
-        let userMO = User(entity: description!, insertInto: managedContext)
-        userMO.signedIn = true
-        userMO.email = email
-        userMO.id = userID
+//        let managedContext = container.viewContext
+        if let description = NSEntityDescription.entity(forEntityName: "\(User.self)", in: managedContext) {
+            //cache user
+            let userMO = User(entity: description, insertInto: managedContext)
+            userMO.signedIn = true
+            userMO.email = email
+            userMO.id = userID
+        }
     }
     
     func getUser() -> String? {
-        let fetchRequest = NSFetchRequest<User>(entityName: "User")
-        let managedContext = container.viewContext
+//        let managedContext = container.viewContext
         
         do {
-            let fetchedResults = try managedContext.fetch(fetchRequest)
+            let fetchedResults = try managedContext.fetch(userFetchRequest)
             for item in fetchedResults {
                 return item.value(forKey: "email") as? String
             }
@@ -57,12 +56,13 @@ class LocalDataCoordinator {
     }
     
     func logoutUser() {
-        let managedContext = container.viewContext
-        let description = NSEntityDescription.entity(forEntityName: "\(User.self)", in: managedContext)
-        let userMO = User(entity: description!, insertInto: managedContext)
-        
-        userMO.signedIn = false
-        userMO.email = "nil"
-        userMO.id = ""
+//        let managedContext = container.viewContext
+        if let description = NSEntityDescription.entity(forEntityName: "\(User.self)", in: managedContext) {
+            let userMO = User(entity: description, insertInto: managedContext)
+            
+            userMO.signedIn = false
+            userMO.email = "nil"
+            userMO.id = ""
+        }
     }
 }

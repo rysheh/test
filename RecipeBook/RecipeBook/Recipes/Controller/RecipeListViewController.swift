@@ -47,9 +47,9 @@ class RecipeListViewController: UIViewController {
     }
     
     func configureUI() {
-        UINavigationBar.appearance().barTintColor = UIColor(red: 242/255, green: 202/255, blue: 201/255, alpha: 1)
-        UINavigationBar.appearance().tintColor = UIColor.white
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont(name: "ADAM.CG PRO", size: 20)!]
+//        UINavigationBar.appearance().barTintColor = UIColor(red: 242/255, green: 202/255, blue: 201/255, alpha: 1)
+        UINavigationBar.appearance().tintColor = UIColor.black
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black, NSAttributedStringKey.font: UIFont(name: "ADAM.CG PRO", size: 20)!]
     }
     
     @IBAction func returnHome(_ sender: Any) {

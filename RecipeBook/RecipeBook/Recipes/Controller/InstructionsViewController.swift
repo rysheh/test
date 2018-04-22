@@ -49,7 +49,7 @@ class InstructionsViewController: UIViewController {
         self.navigationItem.setLeftBarButton(btnPrev, animated: false)
         
     //TEXTVIEWS/LABELS
-        self.stepNumber.text = "\(stepCount + 1)" + "/" + "\(recipe!.instructions.count)"
+        self.stepNumber.text = "\(stepCount + 1)" + "/" + "\(recipe?.instructions.count)"
         self.instructionTitle.text = recipe?.instructions[stepCount].title
         self.instructionDescription.text = recipe?.instructions[stepCount].info
         self.instructionIngredients.text = recipe?.instructions[stepCount].ingredients

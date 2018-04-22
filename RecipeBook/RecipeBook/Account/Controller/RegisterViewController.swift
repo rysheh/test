@@ -49,23 +49,27 @@ class RegisterViewController: UIViewController {
     @IBAction func registerTapped(_ sender: Any) {
         if(checkFields() && checkPasswordConfirmation()) {
             //Firebase
-            Auth.auth().createUser(withEmail: emailTextfield.text!, password: passwordTextfield.text!) { (user, error) in
-                if error != nil {
-                    print(error!)
-                } else {
-                    self.performSegue(withIdentifier: "unwindToMainSegue", sender: self)
+            if let email = emailTextfield.text, let password = passwordTextfield.text {
+                Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+                    if error != nil {
+                        print(error!)
+                    } else {
+                        self.performSegue(withIdentifier: "unwindToMainSegue", sender: self)
+                    }
                 }
+                
+                //API push new user email to database, returns userId
+                apiCommunication.createUser(email: email, completion: { (userID, error) in
+                    if error != nil {
+                        print(error!)
+                    } else {
+                        if userID != nil {
+                            //Cache user information
+                            self.dc.signInUser(email: email, userID: userID!)
+                        }
+                    }
+                })
             }
-            
-            //API push new user email to database, returns userId
-            apiCommunication.createUser(email: emailTextfield.text!, completion: { (userID, error) in
-                if error != nil {
-                    print(error!)
-                } else {
-                    //Cache user information
-                    self.dc.signInUser(email: self.emailTextfield.text!, userID: userID!)
-                }
-            })
         }
     }
 }

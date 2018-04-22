@@ -14,11 +14,11 @@ class RecipeDetailViewController: UIViewController {
     
     var recipe: Recipe?
     
-    @IBOutlet weak var viewImage: UIImageView!
-    @IBOutlet weak var timeLabel: UITextView!
-    @IBOutlet weak var ingredientsLabel: UITextView!
-    @IBOutlet weak var descriptionLabel: UITextView!
-    @IBOutlet weak var userLabel: UITextView!
+    @IBOutlet weak var viewImage: UIImageView?
+    @IBOutlet weak var timeLabel: UITextView?
+    @IBOutlet weak var ingredientsLabel: UITextView?
+    @IBOutlet weak var descriptionLabel: UITextView?
+    @IBOutlet weak var userLabel: UITextView?
     @IBOutlet weak var ratingsView: CosmosView!
     
     override func viewDidLoad() {
@@ -28,24 +28,30 @@ class RecipeDetailViewController: UIViewController {
     }
     
     func configureUI() {
-        UINavigationBar.appearance().barTintColor = UIColor(red: 242/255, green: 202/255, blue: 201/255, alpha: 1)
-        UINavigationBar.appearance().tintColor = UIColor.white
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont(name: "ADAM.CG PRO", size: 30)!]
+//        UINavigationBar.appearance().barTintColor = UIColor(red: 242/255, green: 202/255, blue: 201/255, alpha: 1)
+        UINavigationBar.appearance().tintColor = UIColor.black
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black, NSAttributedStringKey.font: UIFont(name: "ADAM.CG PRO", size: 30)!]
         
 //        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(self.addToBook))
         
-        viewImage.image = recipe?.image
-        viewImage.contentMode = .scaleAspectFit
+        viewImage?.image = recipe?.image
+        viewImage?.contentMode = .scaleAspectFit
         
         ratingsView.settings.fillMode = .half
         ratingsView.settings.updateOnTouch = false
+        timeLabel?.text = getTime()
         
-        timeLabel.text = getTime()
-        descriptionLabel.text = "\"" + (recipe?.description)! + "\""
-        ingredientsLabel.text = getIngredients()
+        if let description = recipe?.description {
+            descriptionLabel?.text = "\"" + description + "\""
+        }
         
-        adjustUITextViewHeight(arg: descriptionLabel)
-        adjustUITextViewHeight(arg: ingredientsLabel)
+        if let ingredients = getIngredients() as? String {
+            ingredientsLabel?.text = ingredients
+        }
+        if(descriptionLabel != nil && ingredientsLabel != nil) {
+            adjustUITextViewHeight(arg: descriptionLabel!)
+            adjustUITextViewHeight(arg: ingredientsLabel!)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {        
